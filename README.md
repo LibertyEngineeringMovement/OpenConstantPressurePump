@@ -6,3 +6,5 @@ Open Constant Pressure Pump - inspired by projects that promote opensource medic
 This is my version of a CPAP, which is based on a squirrel cage fan, like what is in your bathroom exhaust fan. 
 
 Keep it cheap, keep it free (as in free of restrictions).
+
+Models ready for printing can be found at http://www.thingiverse.com/thing:186591
