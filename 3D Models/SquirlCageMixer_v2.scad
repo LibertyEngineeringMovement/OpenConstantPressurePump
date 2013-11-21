@@ -52,9 +52,52 @@ module scCore(){
 difference(){
 mountedCup();
 translate([0,0,0]) 
-   cylinder(h=41,r=2.5,center=true,$fa=0.01);
+   cylinder(h=41,r=3,center=true,$fa=0.01);
 }}
 
 scCore();
+
+module HousingPlate(z)
+{
+translate([0,0,z])
+cylinder(h=2,r=53,center=true,$fa=0.01);
+}
+
+module BottomPlate()
+{
+HousingPlate(-22);
+}
+
+module TopPlate()
+{
+HousingPlate(22);
+}
+
+module WithDrillHole()
+{
+difference(){
+BottomPlate();
+translate([0,0,-22]) 
+   cylinder(h=4,r=3,center=true,$fa=0.01);
+}}
+
+module WithVentHole()
+{
+difference(){
+TopPlate();
+translate([0,0,22]) 
+   cylinder(h=4,r=22,center=true,$fa=0.01);
+}}
+
+module Shell(){
+difference(){
+cylinder(h=42,r=53,center=true,$fa=0.01);
+translate([0,0,2]) 
+   cylinder(h=50,r=51,center=true,$fa=0.01);
+}}
+
+WithDrillHole();
+WithVentHole();
+Shell();
 
 
