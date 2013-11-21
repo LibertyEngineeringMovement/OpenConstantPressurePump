@@ -55,7 +55,6 @@ translate([0,0,0])
    cylinder(h=41,r=3,center=true,$fa=0.01);
 }}
 
-scCore();
 
 module HousingPlate(z)
 {
@@ -96,8 +95,50 @@ translate([0,0,2])
    cylinder(h=50,r=51,center=true,$fa=0.01);
 }}
 
+module ShellCaps(){
 WithDrillHole();
 WithVentHole();
-Shell();
+}
 
+module ShellCaseCore(){
+Shell();
+ShellCaps();
+}
+
+module DuctShell()
+{
+translate([-30,30,0]) 
+cube(size = [42,60,42], center = true);
+}
+
+module DuctVent()
+{
+difference(){
+difference(){
+translate([-30,30,0])cube(size = [46,60,46], center = true);
+DuctShell();
+}
+cylinder(h=50,r=53,center=true,$fa=0.01);
+}}
+
+module ventedShell(){
+difference(){
+ShellCaseCore();
+DuctShell();
+}}
+
+//module TrimmedDuctVent(){
+//difference(){
+//DuctVent();
+//Shell(46);
+//}}
+
+module casingShell(){
+union(){
+ventedShell();
+DuctVent();
+}}
+
+casingShell();
+scCore();
 
