@@ -107,7 +107,7 @@ ShellCaps();
 
 module DuctShell()
 {
-translate([-30,30,0]) 
+translate([30,30,0]) 
 cube(size = [42,60,42], center = true);
 }
 
@@ -115,7 +115,7 @@ module DuctVent()
 {
 difference(){
 difference(){
-translate([-30,30,0])cube(size = [46,60,46], center = true);
+translate([30,30,0])cube(size = [46,60,46], center = true);
 DuctShell();
 }
 cylinder(h=50,r=53,center=true,$fa=0.01);
@@ -127,18 +127,32 @@ ShellCaseCore();
 DuctShell();
 }}
 
-//module TrimmedDuctVent(){
-//difference(){
-//DuctVent();
-//Shell(46);
-//}}
+module screwmounts(){
+translate([54,0,0]){
+difference(){
+cylinder(h=46,r=3.0,center=true,$fa=0.01);
+cylinder(h=46,r=1.5,center=true,$fa=0.01);
+}}}
+
+module multipleScrewMounts(){
+rotate(0,0,0) screwmounts();
+rotate(120,0,0) screwmounts();
+rotate(240,0,0) screwmounts();
+}
 
 module casingShell(){
 union(){
+union(){
 ventedShell();
 DuctVent();
+}
+multipleScrewMounts();
 }}
 
 casingShell();
 scCore();
+
+
+
+
 
