@@ -149,7 +149,22 @@ DuctVent();
 multipleScrewMounts();
 }}
 
+module UpperCasing(){
+difference(){
 casingShell();
+translate([0,0,-1]) cube(size=[120,120,44],center=true);
+}}
+
+module LowerCasing(){
+difference(){
+casingShell();
+translate([0,0,22]) cube(size=[120,120,2],center=true);
+}}
+
+
+translate([0,0,2]) UpperCasing();
+LowerCasing();
+
 scCore();
 
 
