@@ -162,10 +162,75 @@ translate([0,0,22]) cube(size=[120,120,2],center=true);
 }}
 
 
+module VentAttach(){
+difference(){
+union(){
+cube(size = [44,5,44], center = true);
+translate([0,-5,0]) cube(size = [42,10,42], center = true);
+}
+translate([0,-4,0]) cube(size = [40,15,40], center = true);
+}}
+
+module OuterAttachBlock(){
+translate([0,0,0]) rotate([0,0,90])
+difference(){
+cube(size = [60,30.5,60], center = true);
+cube(size = [42,31,42], center = true);
+}
+}
+
+module InnerAttachBlock(){
+translate([0,0,0]) rotate([0,0,90])
+difference(){
+cube(size = [60,30.5,60], center = true);
+cube(size = [38,31,38], center = true);
+}
+}
+
+module HoseAdapter(){
+translate([30,120,0]) rotate([0,0,90])
+union(){
+union(){
+difference(){
+rotate([0,90,0]) cylinder(h=30,r=15,center=true,$fa=0.01 );
+rotate([0,90,0]) cylinder(h=30.5,r=13,center=true,$fa=0.01 );
+}
+translate([-30,0,0]) difference(){
+difference(){
+rotate([0,270,0]) cylinder(h=30,r=15,r2=29.7,center=true,$fa=0.01 );
+OuterAttachBlock();
+}
+difference(){
+rotate([0,270,0]) cylinder(h=30.5,r1=13,r2=27.7,center=true,$fa=0.01 );
+InnerAttachBlock();
+}}}
+translate([-47.5,0,0]) rotate([0,0,270]) VentAttach();
+}}
+
+
+
 translate([0,0,2]) UpperCasing();
+
 LowerCasing();
 
 scCore();
+
+HoseAdapter();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
